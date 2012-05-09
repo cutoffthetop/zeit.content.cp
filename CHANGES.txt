@@ -2,8 +2,15 @@ zeit.content.cp changes
 =======================
 
 
-0.51.1 (unreleased)
+0.52.0 (unreleased)
 -------------------
+
+- Applied a non-numerical prefix to generated ids that may be used as html ids
+  for standards conformance and forward compatibility with webdriver.
+
+- Fixed and re-enabled some tests (#10340, #10364).
+
+- Maximize selenium test window on test start
 
 - Cleaned up dependencies on zope.app packages.
 
