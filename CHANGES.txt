@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-0.52.0 (unreleased)
+0.52.0 (2012-05-10)
 -------------------
 
 - Applied a non-numerical prefix to generated ids that may be used as html ids
