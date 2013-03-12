@@ -5,6 +5,9 @@ zeit.content.cp changes
 0.52.1 (unreleased)
 -------------------
 
+- Don't change lead teaser block layout to button when moving blocks around
+  (#12199)
+
 - Prefer teaserSuperTitle over superTitle (#11610).
 
 
