@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-0.52.1 (unreleased)
+0.53.0 (2013-03-13)
 -------------------
 
 - Don't change lead teaser block layout to button when moving blocks around
