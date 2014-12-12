@@ -5,7 +5,7 @@ zeit.content.cp changes
 2.7.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- No longer automatically insert relateds when dropping content (VIV-536).
 
 
 2.7.6 (2015-02-20)
