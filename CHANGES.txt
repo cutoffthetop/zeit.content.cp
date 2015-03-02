@@ -5,6 +5,8 @@ zeit.content.cp changes
 2.7.7 (unreleased)
 ------------------
 
+- Auto-CP: Provide current feed items in ``IRenderedXML`` (DEV-621).
+
 - No longer automatically insert relateds when dropping content (VIV-536).
 
 

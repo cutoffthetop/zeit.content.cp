@@ -121,6 +121,24 @@ class AutomaticRegionTest(zeit.content.cp.testing.FunctionalTestCase):
     <block...href="http://xml.zeit.de/testcontent"...""",
             lxml.etree.tostring(xml, pretty_print=True))
 
+    def test_rendered_xml_contains_automatic_items_in_cp_feed(self):
+        lead = self.repository['cp']['lead']
+        auto = zeit.content.cp.interfaces.IAutomaticRegion(lead)
+        auto.count = 1
+        auto.automatic = True
+
+        with mock.patch('zeit.find.search.search') as search:
+            search.return_value = [
+                dict(uniqueId='http://xml.zeit.de/testcontent',
+                     lead_candidate=True)]
+            xml = zeit.content.cp.interfaces.IRenderedXML(
+                self.repository['cp'])
+        self.assertEllipsis(
+            """...
+<feed>
+  <reference...href="http://xml.zeit.de/testcontent"...""",
+            lxml.etree.tostring(xml, pretty_print=True))
+
     def test_stores_query_in_xml(self):
         lead = self.repository['cp']['lead']
         auto = zeit.content.cp.interfaces.IAutomaticRegion(lead)
@@ -190,3 +208,13 @@ class AutomaticRegionTest(zeit.content.cp.testing.FunctionalTestCase):
             'http://xml.zeit.de/leader', list(result[0])[0].uniqueId)
         self.assertEqual(
             'http://xml.zeit.de/normal', list(result[1])[0].uniqueId)
+
+    def test_checkin_smoke_test(self):
+        with mock.patch('zeit.find.search.search') as search:
+            search.return_value = []
+            with zeit.cms.checkout.helper.checked_out(
+                    self.repository['cp']) as cp:
+                lead = cp['lead']
+                auto = zeit.content.cp.interfaces.IAutomaticRegion(lead)
+                auto.count = 1
+                auto.automatic = True
