@@ -245,8 +245,6 @@ class Feed(zeit.cms.related.related.RelatedBase):
     zope.component.adapts(zeit.content.cp.interfaces.ICenterPage)
     zope.interface.implements(zeit.content.cp.interfaces.ICPFeed)
 
-    # the feed items are ordered chronologically descending,
-    # so the XSLT can just get the first n items to build the actual feed.
     items = zeit.cms.content.reference.MultiResource(
         '.feed.reference', 'related')
 
@@ -272,7 +270,8 @@ def update_feed_items(context, event):
         items.append(item)
         check_items.append(check_item)
 
-    for item in zeit.cms.syndication.interfaces.IReadFeed(context):
+    teasers = zeit.content.cp.interfaces.ITeaseredContent(context)
+    for item in teasers:
         if zeit.content.cp.interfaces.IXMLTeaser.providedBy(item):
             if item.original_content in check_items:
                 continue
@@ -280,10 +279,9 @@ def update_feed_items(context, event):
             continue
         items.insert(0, item)
 
-    items_in_lead = len(zeit.cms.syndication.interfaces.IReadFeed(context))
     config = zope.app.appsetup.product.getProductConfiguration(
         'zeit.content.cp')
-    max_items = max(items_in_lead, int(config['cp-feed-max-items']))
+    max_items = max(len(teasers), int(config['cp-feed-max-items']))
     while len(items) > max_items:
         del items[-1]
 
