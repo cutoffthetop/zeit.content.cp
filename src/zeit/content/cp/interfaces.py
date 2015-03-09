@@ -156,7 +156,10 @@ class QueryTypeSource(zeit.cms.content.sources.SimpleFixedValueSource):
 class IAutomaticRegion(IRegion):
 
     automatic = zope.schema.Bool(title=_('automatic'))
-    count = zope.schema.Int(title=_('Amount of teasers'), default=15)
+    count = zope.schema.Int(
+        title=_('Amount of teasers'),
+        default=15,
+        required=False)
 
     query = zope.schema.Tuple(
         title=_('Channel Query'),
