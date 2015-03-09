@@ -265,8 +265,7 @@ class Drop(zeit.edit.browser.view.Action):
         self.context.insert(self.index, content)
         zope.event.notify(zope.lifecycleevent.ObjectModifiedEvent(
             self.context))
-        self.signal(
-            None, 'reload', self.context.__name__, self.url('@@contents'))
+        self.reload()
 
 
 class AutoPilotDrop(Drop):
@@ -339,8 +338,7 @@ class ChangeLayout(zeit.edit.browser.view.Action):
         zope.event.notify(zope.lifecycleevent.ObjectModifiedEvent(
             self.context))
         self.signal('before-reload', 'deleted', self.context.__name__)
-        self.signal(
-            None, 'reload', self.context.__name__, self.url('@@contents'))
+        self.reload()
         self.signal('after-reload', 'added', self.context.__name__)
 
 
@@ -368,7 +366,7 @@ class ToggleBooleanBase(zeit.edit.browser.view.Action):
                 (True if self.to == 'on' else False))
         zope.event.notify(zope.lifecycleevent.ObjectModifiedEvent(
             self.context))
-        self.signal_context_reload()
+        self.reload()
 
 
 class ToggleAutopilot(ToggleBooleanBase):
@@ -412,8 +410,7 @@ class Delete(zeit.edit.browser.view.Action):
         self.context.remove(content)
         zope.event.notify(zope.lifecycleevent.ObjectModifiedEvent(
             self.context))
-        self.signal(
-            None, 'reload', self.context.__name__, self.url('@@contents'))
+        self.reload()
 
 
 class Countings(object):
