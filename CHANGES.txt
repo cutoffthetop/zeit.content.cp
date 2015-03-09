@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.7.9 (unreleased)
+2.7.9 (2015-03-09)
 ------------------
 
 - Auto-CP: Retrieve the configured number of teasers from solr (DEV-621).
