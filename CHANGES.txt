@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.7.10 (unreleased)
+2.7.10 (2015-03-10)
 -------------------
 
 - Auto-CP: Make ``count`` field required when ``automatic`` is True (BUG-213).
