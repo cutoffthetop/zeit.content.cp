@@ -28,14 +28,14 @@ Create a teaserblock with a few teasers:
 >>> import pprint
 >>> result = json.loads(browser.contents)
 >>> pprint.pprint(result['signals'])
-[{u'args': [u'id-cbbf6f19-58b9-4cbb-926b-e3fb521e4900'],
-  u'name': u'added',
-  u'when': u'after-reload'},
- {u'args': [u'lead',
+[{u'args': [u'lead',
             u'http://localhost/++skin++cms/workingcopy/zope.user/island/lead/@@contents'],
   u'name': u'reload',
-  u'when': None}]
->>> uuid = result['signals'][0]['args'][0]
+  u'when': None},
+{u'args': [u'id-cbbf6f19-58b9-4cbb-926b-e3fb521e4900'],
+  u'name': u'added',
+  u'when': u'after-reload'}]
+>>> uuid = result['signals'][1]['args'][0]
 >>> browser.open(contents_url)
 >>> browser.open('lead/%s/@@drop?uniqueId=http://xml.zeit.de/c2' % uuid)
 >>> browser.open(contents_url)
