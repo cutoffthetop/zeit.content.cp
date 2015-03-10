@@ -241,6 +241,11 @@
   margin: 1em;
 }
 
+.block.type-teaser > .block-inner,
+.block.type-teaser-bar > .block-inner {
+  overflow: hidden;
+}
+
 .block.type-teaser .teaser {
   font-size: 0.8em;
 }
