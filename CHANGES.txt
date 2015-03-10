@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.7.11 (unreleased)
+2.7.11 (2015-03-10)
 -------------------
 
 - Fix styling for teaser blocks / floating images (DEV-666).
