@@ -8,6 +8,7 @@ import zc.form.field
 import zeit.cms.content.contentsource
 import zeit.cms.content.interfaces
 import zeit.cms.content.sources
+import zeit.cms.interfaces
 import zeit.cms.repository.interfaces
 import zeit.cms.syndication.interfaces
 import zeit.cms.tagging.interfaces
@@ -183,6 +184,13 @@ class IAutomaticRegion(IRegion):
     # XXX really ugly styling hack
     automatic.setTaggedValue('placeholder', ' ')
     raw_query.setTaggedValue('placeholder', ' ')
+
+    @zope.interface.invariant
+    def count_requires_automatic(obj):
+        if obj.automatic and not obj.count:
+            raise zeit.cms.interfaces.ValidationError(
+                _("Cannot enable automatic without count"))
+        return True
 
 
 class ICMSContentIterable(zope.interface.Interface):
