@@ -2,8 +2,8 @@ zeit.content.cp changes
 =======================
 
 
-2.7.12 (unreleased)
--------------------
+2.8.0 (2015-03-11)
+------------------
 
 - Mark centerpages with interface to distinguish between master and 2.x branch
   (DEV-660).
