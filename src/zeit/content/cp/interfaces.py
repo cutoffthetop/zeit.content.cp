@@ -35,7 +35,6 @@ class ValidationError(zope.schema.ValidationError):
 class ICenterPage(zeit.cms.content.interfaces.ICommonMetadata,
                   zeit.cms.content.interfaces.IXMLContent,
                   zope.container.interfaces.IReadContainer):
-    """A relaunch 09 centerpage."""
 
     type = zope.schema.Choice(
         title=_('CP type'),
@@ -111,6 +110,14 @@ class ICenterPage(zeit.cms.content.interfaces.ICommonMetadata,
 
     def updateMetadata(content):
         """Update the metadata of the given content object."""
+
+
+class ICP2009(ICenterPage):
+    """Marker interfaces for CPs edited by the old 2.x CP-Editor branch."""
+
+
+class ICP2015(ICenterPage):
+    """Marker interfaces for CPs edited by the current CP-Editor (master)."""
 
 
 class CenterPageSource(zeit.cms.content.contentsource.CMSContentSource):
