@@ -384,25 +384,19 @@ def create_cp_channel(context, event):
 def apply_layout_for_added(context, event):
     region = context.__parent__
     if zeit.content.cp.interfaces.ILead.providedBy(region):
-        apply_layout(region, zope.container.contained.ContainerModifiedEvent(
-            region, zope.lifecycleevent.Attributes(
-                zeit.edit.interfaces.IContainer, context.__name__)))
+        apply_layout(region, zeit.edit.interfaces.OrderUpdatedEvent(
+            region, context.__name__))
 
 
 @zope.component.adapter(
     zeit.content.cp.interfaces.ILead,
-    zope.container.interfaces.IContainerModifiedEvent)
+    zeit.edit.interfaces.IOrderUpdatedEvent)
 def apply_layout(context, event):
     """Apply the layout for elements in the teaser list.
 
     The first one mustn't be small, all other have to be small.
     """
-    if (not event.descriptions
-        or event.descriptions[0].interface
-        is not zeit.edit.interfaces.IContainer):
-        # not triggered by updateOrder
-        return
-    previously_first = event.descriptions[0].attributes[0]
+    previously_first = event.old_order[0]
 
     cp_type = zeit.content.cp.interfaces.ICenterPage(context).type
     if (cp_type == 'archive-print-volume'

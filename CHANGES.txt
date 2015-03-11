@@ -5,7 +5,7 @@ zeit.content.cp changes
 2.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update to changed updateOrder event in zeit.edit.
 
 
 2.8.0 (2015-03-11)
