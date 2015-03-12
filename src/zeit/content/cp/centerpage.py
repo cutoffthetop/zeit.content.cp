@@ -365,4 +365,4 @@ def mark_cp_on_checkout(context, event):
     if (zeit.content.cp.interfaces.ICP2009.providedBy(context)
         or zeit.content.cp.interfaces.ICP2015.providedBy(context)):
         return
-    zope.interface.alsoProvides(context, zeit.content.cp.interfaces.ICP2015)
+    zope.interface.alsoProvides(context, zeit.content.cp.interfaces.ICP2009)

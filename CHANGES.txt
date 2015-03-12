@@ -5,6 +5,8 @@ zeit.content.cp changes
 2.8.1 (unreleased)
 ------------------
 
+- Mark centerpages with correct interface for this branch, ICP2009.
+
 - Add cancel button to migration warning (DEV-660).
 
 - Update to changed updateOrder event in zeit.edit.
