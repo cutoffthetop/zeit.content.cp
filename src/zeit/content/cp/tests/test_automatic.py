@@ -218,3 +218,15 @@ class AutomaticRegionTest(zeit.content.cp.testing.FunctionalTestCase):
                 auto = zeit.content.cp.interfaces.IAutomaticRegion(lead)
                 auto.count = 1
                 auto.automatic = True
+
+    def test_channel_has_automatic_attribute(self):
+        with mock.patch('zeit.find.search.search') as search:
+            search.return_value = []
+            with zeit.cms.checkout.helper.checked_out(
+                    self.repository['cp']) as cp:
+                lead = cp['lead']
+                auto = zeit.content.cp.interfaces.IAutomaticRegion(lead)
+                auto.count = 1
+                auto.automatic = True
+        self.assertEqual(
+            'True', self.repository['cp.lead'].xml.get('automatic'))

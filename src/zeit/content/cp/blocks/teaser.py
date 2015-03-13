@@ -375,7 +375,14 @@ def create_cp_channel(context, event):
         if zeit.cms.interfaces.ICMSContent.providedBy(obj):
             feed.insert(0, obj)
     feed_name = cp_feed_name(context.__name__)
+    if automatic_enabled(context):
+        feed.xml.set('automatic', 'True')
     context.__parent__[feed_name] = feed
+
+
+def automatic_enabled(centerpage):
+    return zeit.content.cp.interfaces.IAutomaticRegion(
+        centerpage['lead']).automatic
 
 
 @zope.component.adapter(

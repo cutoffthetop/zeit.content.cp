@@ -11,6 +11,8 @@ zeit.content.cp changes
 
 - Update to changed updateOrder event in zeit.edit.
 
+- Auto-CP: Mark CP feed ``.lead`` with ``automatic`` attribute (DEV-659).
+
 
 2.8.0 (2015-03-11)
 ------------------
