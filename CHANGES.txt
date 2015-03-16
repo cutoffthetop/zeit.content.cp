@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.9.0 (unreleased)
+2.9.0 (2015-03-16)
 ------------------
 
 - Don't generate ``xinclude`` for autopilots anymore, XSLT resolves them now
