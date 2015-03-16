@@ -2,8 +2,11 @@ zeit.content.cp changes
 =======================
 
 
-2.8.1 (unreleased)
+2.9.0 (unreleased)
 ------------------
+
+- Don't generate ``xinclude`` for autopilots anymore, XSLT resolves them now
+  (DEV-659).
 
 - Mark centerpages with correct interface for this branch, ICP2009.
 

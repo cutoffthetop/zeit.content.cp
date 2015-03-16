@@ -2,10 +2,10 @@
 # Copyright (c) 2009-2010 gocept gmbh & co. kg
 # See also LICENSE.txt
 
-from zeit.content.cp.blocks.teaser import create_xi_include
 from zeit.content.cp.i18n import MessageFactory as _
 import lxml.objectify
 import zeit.cms.content.property
+import zeit.cms.interfaces
 import zeit.content.cp.blocks.block
 import zeit.content.cp.interfaces
 import zope.component
@@ -68,3 +68,25 @@ zeit.edit.block.register_element_factory(
     [zeit.content.cp.interfaces.ILead,
      zeit.content.cp.interfaces.IInformatives,
      zeit.content.cp.interfaces.ITeaserBar], 'rss', _('RSS block'))
+
+
+def make_path_for_unique_id(uniqueId):
+    return uniqueId.replace(
+        zeit.cms.interfaces.ID_NAMESPACE, '/var/cms/work/')
+
+
+INCLUDE_MAKER = lxml.objectify.ElementMaker(
+    annotate=False,
+    namespace='http://www.w3.org/2003/XInclude',
+    nsmap={'xi': 'http://www.w3.org/2003/XInclude'},
+)
+
+
+def create_xi_include(context, xpath, name_maker=make_path_for_unique_id):
+    path = name_maker(context.uniqueId)
+    include = INCLUDE_MAKER.include(
+        INCLUDE_MAKER.fallback('Ziel %s nicht erreichbar.' % context.uniqueId),
+        href=path,
+        parse='xml',
+        xpointer='xpointer(%s)' % xpath)
+    return include
