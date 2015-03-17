@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.9.1 (unreleased)
+2.9.1 (2015-03-17)
 ------------------
 
 - Suppress errors when generating CP Feed during rendering XML in Friedbert
