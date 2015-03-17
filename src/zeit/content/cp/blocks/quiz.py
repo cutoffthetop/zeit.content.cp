@@ -1,11 +1,16 @@
 # Copyright (c) 2009-2010 gocept gmbh & co. kg
 # See also LICENSE.txt
 
+from zeit.content.cp.blocks.teaser import create_xi_include
 from zeit.content.cp.i18n import MessageFactory as _
 import grokcore.component
 import zeit.cms.content.property
+import zeit.cms.content.xmlsupport
+import zeit.cms.content.xmlsupport
 import zeit.content.cp.blocks.block
 import zeit.content.cp.interfaces
+import zeit.content.quiz.interfaces
+import zope.component
 import zope.interface
 
 

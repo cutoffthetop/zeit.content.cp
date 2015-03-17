@@ -5,7 +5,7 @@ zeit.content.cp changes
 2.9.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Generate ``xinclude`` again, XSLT is not ready yet (DEV-659).
 
 
 2.9.1 (2015-03-17)
