@@ -218,6 +218,9 @@ class ICPFeed(zope.interface.Interface):
 
     items = zope.interface.Attribute("tuple of feed items")
 
+    def set_items_and_supress_errors(items):
+        pass
+
 
 def hex_literal(value):
     try:
