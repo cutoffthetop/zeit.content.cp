@@ -5,7 +5,8 @@ zeit.content.cp changes
 2.9.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Suppress second-level errors when generating CP Feed during rendering XML in
+  Friedbert (VIV-629).
 
 
 2.9.3 (2015-03-20)
