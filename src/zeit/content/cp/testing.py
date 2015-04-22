@@ -132,13 +132,12 @@ class SeleniumTestCase(zeit.cms.testing.SeleniumTestCase):
                 '[contains(string(.), "%s")]' % (area, area, text))
 
     def open_centerpage(self):
-        with zeit.cms.testing.site(self.getRootFolder()):
-            with zeit.cms.testing.interaction():
-                repository = zope.component.getUtility(
-                    zeit.cms.repository.interfaces.IRepository)
-                repository['cp'] = zeit.content.cp.centerpage.CenterPage()
-                zeit.cms.checkout.interfaces.ICheckoutManager(
-                    repository['cp']).checkout()
+        transaction.abort()
+        repository = zope.component.getUtility(
+            zeit.cms.repository.interfaces.IRepository)
+        repository['cp'] = zeit.content.cp.centerpage.CenterPage()
+        zeit.cms.checkout.interfaces.ICheckoutManager(
+            repository['cp']).checkout()
         transaction.commit()
 
         s = self.selenium
@@ -177,25 +176,25 @@ class SeleniumTestCase(zeit.cms.testing.SeleniumTestCase):
         s.waitForElementPresent('css=div.type-teaser')
 
     def create_content_and_fill_clipboard(self):
-        with zeit.cms.testing.site(self.getRootFolder()):
-            with zeit.cms.testing.interaction() as principal:
-                repository = zope.component.getUtility(
-                    zeit.cms.repository.interfaces.IRepository)
-                clipboard = zeit.cms.clipboard.interfaces.IClipboard(principal)
-                clipboard.addClip('Clip')
-                clip = clipboard['Clip']
-                for i in range(1, 4):
-                    content = (zeit.cms.testcontenttype.testcontenttype.
-                               TestContentType())
-                    content.teaserTitle = content.shortTeaserTitle = (
-                        u'c%s teaser' % i)
-                    name = 'c%s' % i
-                    repository[name] = content
-                    clipboard.addContent(
-                        clip, repository[name], name, insert=True)
-                quiz = zeit.content.quiz.quiz.Quiz()
-                quiz.teaserTitle = quiz.shortTeaserTitle = u'MyQuiz'
-                repository['my_quiz'] = quiz
+        repository = zope.component.getUtility(
+            zeit.cms.repository.interfaces.IRepository)
+        principal = (zope.security.management.getInteraction()
+                     .participations[0].principal)
+        clipboard = zeit.cms.clipboard.interfaces.IClipboard(principal)
+        clipboard.addClip('Clip')
+        clip = clipboard['Clip']
+        for i in range(1, 4):
+            content = (zeit.cms.testcontenttype.testcontenttype.
+                       TestContentType())
+            content.teaserTitle = content.shortTeaserTitle = (
+                u'c%s teaser' % i)
+            name = 'c%s' % i
+            repository[name] = content
+            clipboard.addContent(
+                clip, repository[name], name, insert=True)
+        quiz = zeit.content.quiz.quiz.Quiz()
+        quiz.teaserTitle = quiz.shortTeaserTitle = u'MyQuiz'
+        repository['my_quiz'] = quiz
         transaction.commit()
 
         s = self.selenium
