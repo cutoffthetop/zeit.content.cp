@@ -8,6 +8,9 @@ zeit.content.cp changes
 - Backport permission to edit IArea, which is used by zeit.securitypolicy,
   but has no meaning on the 2.x branch. (DEV-746)
 
+- Forward-compatibility: Don't assume every CP has a lead, informatives and
+  teaser-mosaic area.
+
 
 2.9.4 (2015-03-23)
 ------------------

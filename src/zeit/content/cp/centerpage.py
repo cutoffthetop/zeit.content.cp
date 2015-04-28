@@ -47,8 +47,15 @@ class CenterPage(zeit.cms.content.metadata.CommonMetadata,
         ('teaser-mosaic', lxml.etree.XPath('cluster[@area="teaser-mosaic"]')),
     ])
 
-    keys = editable_areas.keys
-    __contains__ = editable_areas.__contains__
+    def keys(self):
+        result = []
+        for key in self.editable_areas.keys():
+            if self.get(key) is not None:
+                result.append(key)
+        return result
+
+    def __contains__(self, key):
+        return key in self.keys()
 
     _type_xml = zeit.cms.content.property.ObjectPathAttributeProperty(
         None, 'type', zeit.content.cp.interfaces.ICenterPage['type'])
