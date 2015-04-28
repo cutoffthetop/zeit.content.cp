@@ -2,8 +2,8 @@ zeit.content.cp changes
 =======================
 
 
-2.10.0 (unreleased)
-------------------
+2.10.0 (2015-04-28)
+-------------------
 
 - Backport permission to edit IArea, which is used by zeit.securitypolicy,
   but has no meaning on the 2.x branch. (DEV-746)
