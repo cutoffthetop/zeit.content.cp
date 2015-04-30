@@ -112,9 +112,11 @@ class CenterPage(zeit.cms.content.metadata.CommonMetadata,
         zeit.content.cp.interfaces.ICenterPage['og_image'])
 
     def __getitem__(self, key):
-        xml = self.editable_areas[key](self.xml['body'])[0]
+        node = self.editable_areas[key](self.xml['body'])
+        if not node:
+            raise KeyError(key)
         area = zope.component.getMultiAdapter(
-            (self, xml),
+            (self, node[0]),
             zeit.edit.interfaces.IArea,
             name=key)
         return zope.container.contained.contained(area, self, key)

@@ -255,3 +255,11 @@ class MoveReferencesTest(zeit.content.cp.testing.FunctionalTestCase):
         self.assertIn(
             'http://xml.zeit.de/changed',
             lxml.etree.tostring(cp.xml, pretty_print=True))
+
+
+class ForwardCompatibility(zeit.content.cp.testing.FunctionalTestCase):
+
+    def test_dont_assume_every_cp_has_lead_informatives_mosaic(self):
+        cp = zeit.content.cp.centerpage.CenterPage()
+        cp.xml.body.remove(cp.xml.body.cluster)
+        self.assertEqual(['teaser-mosaic'], cp.keys())
