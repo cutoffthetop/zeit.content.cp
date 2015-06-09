@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.10.3 (unreleased)
+2.10.3 (2015-06-09)
 -------------------
 
 - Back-port permission EditOverflow, even though that's a no-op here. (DEV-759)
