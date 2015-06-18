@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.10.4 (unreleased)
+2.10.4 (2015-06-18)
 -------------------
 
 - Retrieve images for teaser modules using the new variant API (DEV-782).
