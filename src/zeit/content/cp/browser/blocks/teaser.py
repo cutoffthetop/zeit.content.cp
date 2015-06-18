@@ -247,9 +247,10 @@ class Display(zeit.cms.browser.view.Base):
             return
         image = images.image
         if zeit.content.image.interfaces.IImageGroup.providedBy(image):
-            for name in image:
-                if image_pattern in name:
-                    return self.url(image[name], '@@raw')
+            repository = zope.component.getUtility(
+                zeit.cms.repository.interfaces.IRepository)
+            return '%s%s/@@raw' % (self.url(repository), image.variant_url(
+                image_pattern, thumbnail=True))
         else:
             return self.url(image, '@@raw')
 
