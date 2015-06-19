@@ -5,7 +5,7 @@ zeit.content.cp changes
 2.10.5 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Require bw compat for old imagegroup names (DEV-783).
 
 
 2.10.4 (2015-06-18)
