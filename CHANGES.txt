@@ -5,7 +5,7 @@ zeit.content.cp changes
 2.10.6 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use separate config file for channels (DEV-634).
 
 
 2.10.5 (2015-06-19)
