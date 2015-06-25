@@ -5,7 +5,7 @@ zeit.content.cp changes
 2.10.7 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Remove feature toggle ``zeit.content.cp.automatic`` (DEV-832).
 
 
 2.10.6 (2015-06-23)

@@ -189,7 +189,7 @@
       />
     <require
       set_schema="zeit.content.cp.interfaces.IAutomaticRegion"
-      permission="zeit.content.cp.EditAutomatic"
+      permission="zeit.EditContent"
       />
   </class>
 

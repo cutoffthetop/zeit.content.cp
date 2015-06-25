@@ -28,7 +28,11 @@ class FormBase(object):
             'topiclink_label_2', 'topiclink_url_2',
             'topiclink_label_3', 'topiclink_url_3',
             'og_title', 'og_description', 'og_image',
-            'keywords'))
+            'keywords')
+        + zope.formlib.form.FormFields(
+            zeit.content.cp.interfaces.IAutomaticRegion,
+            render_context=zope.formlib.interfaces.DISPLAY_UNWRITEABLE).select(
+                'count', 'query', 'raw_query', 'automatic'))
 
     text_fields = gocept.form.grouped.Fields(
         _("Texts"),
@@ -45,7 +49,13 @@ class FormBase(object):
          ('og_title', 'og_description', 'og_image'),
         css_class='wide-widgets column-right')
 
+    automatic_fields = gocept.form.grouped.Fields(
+        _("Automatic contents"),
+         ('automatic', 'count', 'query', 'raw_query'),
+        css_class='wide-widgets')
+
     field_groups = (
+        automatic_fields,
         base.navigation_fields,
         base.head_fields,
         text_fields,
@@ -67,36 +77,13 @@ class AddForm(FormBase,
         'automaticMetadataUpdateDisabled')
 
 
-class AutomaticFields(object):
-
-    automatic_fields = zope.formlib.form.FormFields(
-        zeit.content.cp.interfaces.IAutomaticRegion,
-        render_context=zope.formlib.interfaces.DISPLAY_UNWRITEABLE).select(
-            'count', 'query', 'raw_query', 'automatic')
-    automatic_group = gocept.form.grouped.Fields(
-        _("Automatic contents"),
-         ('automatic', 'count', 'query', 'raw_query'),
-        css_class='wide-widgets')
-
-    def __init__(self, *args, **kw):
-        super(AutomaticFields, self).__init__(*args, **kw)
-
-        if zope.app.appsetup.appsetup.getConfigContext().hasFeature(
-                'zeit.content.cp.automatic'):
-            self.form_fields = FormBase.form_fields + self.automatic_fields
-            self.field_groups = (
-                self.automatic_group,) + FormBase.field_groups
-
-
 class EditForm(FormBase,
-               AutomaticFields,
                zeit.cms.content.browser.form.CommonMetadataEditForm):
 
     title = _("Edit centerpage")
 
 
 class DisplayForm(FormBase,
-                  AutomaticFields,
                   zeit.cms.content.browser.form.CommonMetadataDisplayForm):
 
     title = _("View centerpage metadata")
