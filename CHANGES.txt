@@ -5,7 +5,7 @@ zeit.content.cp changes
 2.10.8 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Make sort order of automatic areas configurable (DEV-836).
 
 
 2.10.7 (2015-06-25)

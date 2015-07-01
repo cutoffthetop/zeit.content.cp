@@ -19,8 +19,16 @@ class AutomaticRegion(zeit.cms.content.xmlsupport.Persistent):
     _count = zeit.cms.content.property.ObjectPathAttributeProperty(
         '.', 'count', zeit.content.cp.interfaces.IAutomaticRegion['count'])
 
+    query_order = zeit.cms.content.property.ObjectPathProperty(
+        '.query_order',
+        zeit.content.cp.interfaces.IAutomaticRegion['query_order'],
+        use_default=True)
+
     raw_query = zeit.cms.content.property.ObjectPathProperty(
         '.raw_query', zeit.content.cp.interfaces.IAutomaticRegion['raw_query'])
+    raw_order = zeit.cms.content.property.ObjectPathProperty(
+        '.raw_order', zeit.content.cp.interfaces.IAutomaticRegion['raw_order'],
+        use_default=True)
 
     def __init__(self, context):
         self.context = context
@@ -117,8 +125,9 @@ class AutomaticRegion(zeit.cms.content.xmlsupport.Persistent):
         if self.automatic:
             result = []
             query = self.raw_query if self.raw_query else self._build_query()
+            sort_order = self.raw_order if self.raw_query else self.query_order
             solr_result = list(zeit.find.search.search(
-                query, sort_order='date-first-released desc',
+                query, sort_order=sort_order,
                 additional_result_fields=['lead_candidate'],
                 rows=self.count))
             for block in values:

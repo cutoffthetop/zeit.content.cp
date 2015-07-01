@@ -16,6 +16,7 @@ class AutomaticEditForm(zeit.cms.testing.BrowserTestCase):
         b.getControl('Amount of teasers').value = '5'
         b.getControl('automatic').selected = True
         b.getControl('Raw query').value = 'foo'
+        b.getControl('Sort order', index=1).value = 'bar'
         b.getControl('Apply').click()
         self.assertEllipsis('...Updated on...', b.contents)
 
@@ -25,5 +26,6 @@ class AutomaticEditForm(zeit.cms.testing.BrowserTestCase):
                 cp = list(wc.values())[0]
                 self.assertEllipsis(
                     '<region...count="5" automatic="True"...>...'
-                    '<raw_query>foo</raw_query>...',
+                    '<raw_query>foo</raw_query>...'
+                    '<raw_order>bar</raw_order>...',
                     lxml.etree.tostring(cp['lead'].xml, pretty_print=True))

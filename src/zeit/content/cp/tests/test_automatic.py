@@ -184,6 +184,58 @@ class AutomaticRegionTest(zeit.content.cp.testing.FunctionalTestCase):
                 ' OR keywords:(Berlin*))',
                 query)
 
+    def test_query_order_defaults_to_semantic_change(self):
+        lead = self.repository['cp']['lead']
+        auto = zeit.content.cp.interfaces.IAutomaticRegion(lead)
+        auto.count = 1
+        auto.query = (('Channel', 'International', 'Nahost'),)
+        auto.automatic = True
+        auto.automatic_type = 'channel'
+        with mock.patch('zeit.find.search.search') as search:
+            search.return_value = []
+            auto.values()
+            self.assertEqual(
+                'last-semantic-change desc', search.call_args[1]['sort_order'])
+
+    def test_query_order_can_be_set(self):
+        lead = self.repository['cp']['lead']
+        auto = zeit.content.cp.interfaces.IAutomaticRegion(lead)
+        auto.count = 1
+        auto.query = (('Channel', 'International', 'Nahost'),)
+        auto.query_order = 'order'
+        auto.automatic = True
+        auto.automatic_type = 'channel'
+        with mock.patch('zeit.find.search.search') as search:
+            search.return_value = []
+            auto.values()
+            self.assertEqual('order', search.call_args[1]['sort_order'])
+
+    def test_raw_query_order_defaults_to_first_released(self):
+        lead = self.repository['cp']['lead']
+        auto = zeit.content.cp.interfaces.IAutomaticRegion(lead)
+        auto.count = 1
+        auto.automatic = True
+        auto.raw_query = 'raw'
+        auto.automatic_type = 'query'
+        with mock.patch('zeit.find.search.search') as search:
+            search.return_value = []
+            auto.values()
+            self.assertEqual(
+                'date-first-released desc', search.call_args[1]['sort_order'])
+
+    def test_raw_query_order_can_be_set(self):
+        lead = self.repository['cp']['lead']
+        auto = zeit.content.cp.interfaces.IAutomaticRegion(lead)
+        auto.count = 1
+        auto.automatic = True
+        auto.raw_query = 'raw'
+        auto.raw_order = 'order'
+        auto.automatic_type = 'query'
+        with mock.patch('zeit.find.search.search') as search:
+            search.return_value = []
+            auto.values()
+            self.assertEqual('order', search.call_args[1]['sort_order'])
+
     def test_turning_automatic_off_materializes_filled_in_blocks(self):
         self.repository['normal'] = TestContentType()
         self.repository['leader'] = TestContentType()

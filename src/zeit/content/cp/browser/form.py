@@ -32,7 +32,8 @@ class FormBase(object):
         + zope.formlib.form.FormFields(
             zeit.content.cp.interfaces.IAutomaticRegion,
             render_context=zope.formlib.interfaces.DISPLAY_UNWRITEABLE).select(
-                'count', 'query', 'raw_query', 'automatic'))
+                'count', 'query', 'query_order',
+                'raw_query', 'raw_order', 'automatic'))
 
     text_fields = gocept.form.grouped.Fields(
         _("Texts"),
@@ -51,7 +52,8 @@ class FormBase(object):
 
     automatic_fields = gocept.form.grouped.Fields(
         _("Automatic contents"),
-         ('automatic', 'count', 'query', 'raw_query'),
+         ('automatic', 'count', 'query', 'query_order',
+          'raw_query', 'raw_order'),
         css_class='wide-widgets')
 
     field_groups = (

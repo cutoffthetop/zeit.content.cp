@@ -3,6 +3,7 @@
 
 from zeit.content.cp.i18n import MessageFactory as _
 from zeit.content.cp.layout import ITeaserBlockLayout, ITeaserBarLayout
+import collections
 import urlparse
 import zc.form.field
 import zeit.cms.content.contentsource
@@ -161,6 +162,22 @@ class QueryTypeSource(zeit.cms.content.sources.SimpleFixedValueSource):
     values = ['Channel']  # XXX or 'Keyword', see VIV-471
 
 
+class QuerySortOrderSource(zc.sourcefactory.basic.BasicSourceFactory):
+
+    values = collections.OrderedDict((
+        ('last-semantic-change desc',
+         _('query-sort-order-last-semantic-change')),
+        ('date-first-released desc',
+         _('query-sort-order-first-released')),
+    ))
+
+    def getValues(self):
+        return self.values.keys()
+
+    def getTitle(self, value):
+        return self.values.get(value, value)
+
+
 class IAutomaticRegion(IRegion):
 
     automatic = zope.schema.Bool(title=_('automatic'))
@@ -186,7 +203,17 @@ class IAutomaticRegion(IRegion):
         default=(),
         required=False)
 
+    query_order = zope.schema.Choice(
+        title=_('Sort order'),
+        source=QuerySortOrderSource(),
+        default=u'last-semantic-change desc',
+        required=True)
+
     raw_query = zope.schema.Text(title=_('Raw query'), required=False)
+    raw_order = zope.schema.TextLine(
+        title=_('Sort order'),
+        default=u'date-first-released desc',
+        required=False)
 
     # XXX really ugly styling hack
     automatic.setTaggedValue('placeholder', ' ')
