@@ -1,3 +1,4 @@
+# coding: utf-8
 # Copyright (c) 2009-2010 gocept gmbh & co. kg
 # See also LICENSE.txt
 
@@ -263,3 +264,22 @@ class ForwardCompatibility(zeit.content.cp.testing.FunctionalTestCase):
         cp = zeit.content.cp.centerpage.CenterPage()
         cp.xml.body.remove(cp.xml.body.cluster)
         self.assertEqual(['teaser-mosaic'], cp.keys())
+
+
+class CenterpageTest(zeit.content.cp.testing.FunctionalTestCase):
+
+    def test_regression_bug_217_copying_actually_copies(self):
+        self.repository['cp'] = zeit.content.cp.centerpage.CenterPage()
+        copier = zope.copypastemove.interfaces.IObjectCopier(
+            self.repository['cp'])
+        copier.copyTo(self.repository['online'])
+        with self.assertNothingRaised():
+            self.repository['cp']
+
+    def test_handles_unicode_uniqueIds(self):
+        content = self.repository[u'ümläut'] = (
+            zeit.cms.testcontenttype.testcontenttype.TestContentType())
+        cp = zeit.content.cp.centerpage.CenterPage()
+        cp['lead'].create_item('teaser').append(content)
+        with self.assertNothingRaised():
+            cp.updateMetadata(content)
