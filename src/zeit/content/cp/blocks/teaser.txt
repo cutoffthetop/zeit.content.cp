@@ -91,7 +91,7 @@ While on autopilot, manipulation of the teaser block's contents is forbidden:
 >>> teasers.insert(0, repository['testcontent'])
 Traceback (most recent call last):
     ...
-RuntimeError: <...TeaserBlock object at 0x...>:
+RuntimeError: <...TeaserBlock...>:
     'insert' is forbidden while on autopilot
 
 When the teaser block is switched back to manual mode, the currently referenced
@@ -121,7 +121,7 @@ unter "name.lead":
 >>> with zeit.cms.checkout.helper.checked_out(repository['cp2']):
 ...     pass
 >>> repository['cp2.lead']
-<zeit.cms.syndication.feed.Feed object at 0x...>
+<zeit.cms.syndication.feed.Feed...>
 >>> import pprint
 >>> pprint.pprint(list(x.uniqueId for x in repository['cp2.lead']))
 [u'http://xml.zeit.de/online/2007/01/4schanzentournee-abgesang',
@@ -151,11 +151,11 @@ not though:
 >>> teasers.autopilot = True
 >>> pprint.pprint(
 ...     list(zeit.content.cp.interfaces.ICMSContentIterable(teasers)))
-[<zeit.content.cp.centerpage.CenterPage object at 0x3e664f0>,
- <zeit.cms.repository.unknown.PersistentUnknownResource object at 0x3c2e3b0>,
- <zeit.cms.repository.unknown.PersistentUnknownResource object at 0x3c2eb70>,
- <zeit.cms.repository.unknown.PersistentUnknownResource object at 0x3c2d3b0>,
- <zeit.cms.repository.unknown.PersistentUnknownResource object at 0x3c2db70>]
+[<zeit.content.cp.centerpage.CenterPage...>,
+ <zeit.cms.repository.unknown.PersistentUnknownResource...>,
+ <zeit.cms.repository.unknown.PersistentUnknownResource...>,
+ <zeit.cms.repository.unknown.PersistentUnknownResource...>,
+ <zeit.cms.repository.unknown.PersistentUnknownResource...>]
 
 
 Channels can also be used for the autopilot:

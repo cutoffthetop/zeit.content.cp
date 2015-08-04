@@ -6,7 +6,7 @@ Centerpage
 >>> import zeit.content.cp.centerpage
 >>> cp = zeit.content.cp.centerpage.CenterPage()
 >>> cp
-<zeit.content.cp.centerpage.CenterPage object at 0x...>
+<zeit.content.cp.centerpage.CenterPage...>
 >>> cp.type = u'homepage'
 >>> cp.type
 u'homepage'
@@ -53,10 +53,10 @@ KeyError: 'ugc-bar'
 The centerpage is reachable via ``__parent__`` or by adapting to it:
 
 >>> cp['informatives'].__parent__
-<zeit.content.cp.centerpage.CenterPage object at 0x...>
+<zeit.content.cp.centerpage.CenterPage...>
 >>> import zeit.content.cp.interfaces
 >>> zeit.content.cp.interfaces.ICenterPage(cp['informatives'])
-<zeit.content.cp.centerpage.CenterPage object at 0x...>
+<zeit.content.cp.centerpage.CenterPage...>
 
 [#modified-handler]_
 
@@ -144,7 +144,7 @@ Blocks are created using a block factory:
 True
 >>> block = factory()
 >>> block
-<zeit.content.cp.blocks.placeholder.PlaceHolder object at 0x...>
+<zeit.content.cp.blocks.placeholder.PlaceHolder...>
 
 Creating the block automatically adds it to the container:
 
@@ -172,7 +172,7 @@ Teaser block
 u'List of teasers'
 >>> block = factory()
 >>> block
-<zeit.content.cp.blocks.teaser.AutoPilotTeaserBlock object at 0x...>
+<zeit.content.cp.blocks.teaser.AutoPilotTeaserBlock...>
 >>> block.type
 'teaser'
 
@@ -188,26 +188,26 @@ After calling the factory a corresponding XML node has been created:
 Modules are accessible via __getitem__ [#invalid-raises-error]_:
 
 >>> informatives[block.__name__]
-<zeit.content.cp.blocks.teaser.AutoPilotTeaserBlock object at 0x...>
+<zeit.content.cp.blocks.teaser.AutoPilotTeaserBlock...>
 
 The area can also be iterated:
 
 >>> list(informatives.itervalues())
-[<zeit.content.cp.blocks.placeholder.PlaceHolder object at 0x...>,
- <zeit.content.cp.blocks.teaser.AutoPilotTeaserBlock object at 0x...>]
+[<zeit.content.cp.blocks.placeholder.PlaceHolder...>,
+ <zeit.content.cp.blocks.teaser.AutoPilotTeaserBlock...>]
 >>> informatives.values()
-[<zeit.content.cp.blocks.placeholder.PlaceHolder object at 0x...>,
- <zeit.content.cp.blocks.teaser.AutoPilotTeaserBlock object at 0x...>]
+[<zeit.content.cp.blocks.placeholder.PlaceHolder...>,
+ <zeit.content.cp.blocks.teaser.AutoPilotTeaserBlock...>]
 
 It is possible to get the center page from the block by adapting to ICenterPage:
 
 >>> zeit.content.cp.interfaces.ICenterPage(block)
-<zeit.content.cp.centerpage.CenterPage object at 0x...>
+<zeit.content.cp.centerpage.CenterPage...>
 
 The ``__parent__`` of a block is the area:
 
 >>> block.__parent__
-<zeit.content.cp.area.Informatives object at 0x...>
+<zeit.content.cp.area.Informatives...>
 
 
 Areas support ordering of their contents via the ``updateOrder`` method:
@@ -239,7 +239,7 @@ Blocks can be removed using __delitem__:
 >>> len(informatives)
 1
 >>> informatives.values()
-[<zeit.content.cp.blocks.placeholder.PlaceHolder object at 0x...>]
+[<zeit.content.cp.blocks.placeholder.PlaceHolder...>]
 >>> cp._p_changed
 True
 
@@ -257,9 +257,9 @@ about the weather).
 ...     mosaic, zeit.edit.interfaces.IElementFactory, name='teaser-bar')
 >>> bar = factory()
 >>> bar
-<zeit.content.cp.blocks.teaserbar.TeaserBar object at 0x...>
+<zeit.content.cp.blocks.teaserbar.TeaserBar...>
 >>> mosaic.values()
-[<zeit.content.cp.blocks.teaserbar.TeaserBar object at 0x...>]
+[<zeit.content.cp.blocks.teaserbar.TeaserBar...>]
 >>> cp._p_changed
 True
 
@@ -269,10 +269,10 @@ The bar is alreay populated with four placeholders:
 >>> len(bar)
 4
 >>> bar.values()
-[<zeit.content.cp.blocks.placeholder.PlaceHolder object at 0x...>,
- <zeit.content.cp.blocks.placeholder.PlaceHolder object at 0x...>,
- <zeit.content.cp.blocks.placeholder.PlaceHolder object at 0x...>,
- <zeit.content.cp.blocks.placeholder.PlaceHolder object at 0x...>]
+[<zeit.content.cp.blocks.placeholder.PlaceHolder...>,
+ <zeit.content.cp.blocks.placeholder.PlaceHolder...>,
+ <zeit.content.cp.blocks.placeholder.PlaceHolder...>,
+ <zeit.content.cp.blocks.placeholder.PlaceHolder...>]
 
 
 The xml of the teaser bar is actually a region:
@@ -425,9 +425,9 @@ Topic page
 ...     zeit.cms.sitecontrol.interfaces.ISitesProvider, name='topicpage')
 >>> import pprint
 >>> pprint.pprint(list(topic_provider))
-[<zeit.cms.repository.unknown.PersistentUnknownResource object at 0x3a4a2f0>,
- <zeit.cms.repository.unknown.PersistentUnknownResource object at 0x3a4adf0>,
- <zeit.cms.repository.unknown.PersistentUnknownResource object at 0x3a5f4b0>]
+[<zeit.cms.repository.unknown.PersistentUnknownResource...>,
+ <zeit.cms.repository.unknown.PersistentUnknownResource...>,
+ <zeit.cms.repository.unknown.PersistentUnknownResource...>]
 
 
 .. [#needsinteraction]
