@@ -5,7 +5,7 @@ zeit.content.cp changes
 2.10.9 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Prevent checkout of wrong cp type (2009/2015) during publish.
 
 
 2.10.8 (2015-07-06)
