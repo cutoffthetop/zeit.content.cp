@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.10.10 (unreleased)
+2.10.10 (2015-08-05)
 --------------------
 
 - Prevent any automated checkout of wrong cp type (2009/2015).
