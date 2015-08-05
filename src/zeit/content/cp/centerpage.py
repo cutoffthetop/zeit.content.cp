@@ -392,7 +392,7 @@ def mark_cp_on_checkout(context, event):
     zeit.content.cp.interfaces.ICenterPage,
     zeit.cms.checkout.interfaces.IBeforeCheckoutEvent)
 def prevent_mismatched_checkout(context, event):
-    if not event.publishing:
+    if not event.workingcopy.temporary:
         return  # Normal checkout is taken care of by .browser.editor.Migrate.
     other_iface = zeit.content.cp.interfaces.ICP2015
     current_iface = zeit.content.cp.interfaces.ICP2009
