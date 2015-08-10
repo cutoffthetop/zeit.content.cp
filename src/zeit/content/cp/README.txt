@@ -15,11 +15,11 @@ u'homepage'
 A centerpage has three editable areas:
 
 >>> cp['lead']
-<zeit.content.cp.area.Lead object at 0x...>
+<zeit.content.cp.area.Lead...>
 >>> cp['informatives']
-<zeit.content.cp.area.Informatives object at 0x...>
+<zeit.content.cp.area.Informatives...>
 >>> cp['teaser-mosaic']
-<zeit.content.cp.area.Mosaic object at 0x...>
+<zeit.content.cp.area.Mosaic...>
 
 They are represented in XML as:
 
