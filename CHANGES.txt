@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.10.12 (unreleased)
+2.10.12 (2015-08-18)
 --------------------
 
 - Make auto-cp form tolerant of non-existing `lead` area.
