@@ -5,7 +5,7 @@ zeit.content.cp changes
 2.10.11 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Prevent manual checkout of wrong cp type (DEV-911).
 
 
 2.10.10 (2015-08-05)
