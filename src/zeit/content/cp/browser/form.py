@@ -8,13 +8,18 @@ import zeit.cms.content.browser.form
 import zeit.cms.content.interfaces
 import zeit.cms.interfaces
 import zeit.content.cp.centerpage
-import zope.app.appsetup.appsetup
 import zope.formlib.form
 
 base = zeit.cms.content.browser.form.CommonMetadataFormBase
 
 
 class FormBase(object):
+
+    auto_form_fields = zope.formlib.form.FormFields(
+        zeit.content.cp.interfaces.IAutomaticRegion,
+        render_context=zope.formlib.interfaces.DISPLAY_UNWRITEABLE).select(
+            'count', 'query', 'query_order',
+            'raw_query', 'raw_order', 'automatic')
 
     form_fields = (
         zope.formlib.form.FormFields(
@@ -29,11 +34,7 @@ class FormBase(object):
             'topiclink_label_3', 'topiclink_url_3',
             'og_title', 'og_description', 'og_image',
             'keywords')
-        + zope.formlib.form.FormFields(
-            zeit.content.cp.interfaces.IAutomaticRegion,
-            render_context=zope.formlib.interfaces.DISPLAY_UNWRITEABLE).select(
-                'count', 'query', 'query_order',
-                'raw_query', 'raw_order', 'automatic'))
+        + auto_form_fields)
 
     text_fields = gocept.form.grouped.Fields(
         _("Texts"),
@@ -67,6 +68,13 @@ class FormBase(object):
         base.option_fields,
         og_fields,
     )
+
+    def __init__(self, *args, **kw):
+        super(FormBase, self).__init__(*args, **kw)
+        if 'lead' not in self.context:
+            self.field_groups = self.field_groups[1:]
+            self.form_fields = self.form_fields.omit(*[
+                x.__name__ for x in self.auto_form_fields])
 
 
 class AddForm(FormBase,
