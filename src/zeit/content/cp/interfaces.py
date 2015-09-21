@@ -121,6 +121,10 @@ class ICP2015(ICenterPage):
     """Marker interfaces for CPs edited by the current CP-Editor (master)."""
 
 
+class IStoryStream(ICP2015):
+    """CP with a specific ``type``."""
+
+
 class CenterPageSource(zeit.cms.content.contentsource.CMSContentSource):
 
     name = 'zeit.content.cp'

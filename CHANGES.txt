@@ -5,7 +5,8 @@ zeit.content.cp changes
 2.10.13 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Backport ``IStoryStream`` interface so deserializing provided interfaces
+  doesn't break.
 
 
 2.10.12 (2015-08-18)
