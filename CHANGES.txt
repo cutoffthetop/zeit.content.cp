@@ -5,7 +5,8 @@ zeit.content.cp changes
 2.11.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fully remove any "migration warning" between CP2009/CP2015; always raise
+  CheckinCheckoutError (ZON-2239).
 
 
 2.11.0 (2015-09-21)
