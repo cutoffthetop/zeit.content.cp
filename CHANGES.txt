@@ -2,7 +2,7 @@ zeit.content.cp changes
 =======================
 
 
-2.11.1 (unreleased)
+2.11.1 (2015-09-30)
 -------------------
 
 - Fully remove any "migration warning" between CP2009/CP2015; always raise
